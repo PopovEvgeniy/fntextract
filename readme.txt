@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.1.9
+                               Version 2.1.9.0.1
 
 System requirement
 
@@ -31,15 +31,15 @@ But you can do it under any modern C compiler.
 Source code can be compiled for wide range operation systems, but you need create makefile or build script by yourself.
 I provide only two things: compiled binary file for Windows and makefile for Linux.
 
-Installation and uninstallation under Linux
+Install and uninstall under Linux
 
 Follow this steps:
 
 1.Extract content of source code archive.
 2.Open terminal and go to source code directory.
 3.
-Run for installation: make install
-Run for uninstallation: make uninstall
+Run for install: make install
+Run for uninstall: make uninstall
 
 Contact
 
@@ -51,3 +51,4 @@ Version history
 1.1 — 2.1.4 - Stable branch builds.
 2.1.5 — 2.1.8 - Small changes.
 2.1.9 - Source code was improved. Linux support has been added.
+2.1.9.0.1 – Documentation was updated.
