@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.2.3
+                               Version 2.2.3.1
 
 System requirement
 
@@ -38,8 +38,8 @@ Follow this steps:
 1.Extract content of source code archive.
 2.Open terminal and go to source code directory.
 3.
-Run for install: make install
-Run for uninstall: make uninstall
+Run as root for install: make install
+Run as root for uninstall: make uninstall
 
 Contact
 
@@ -53,3 +53,4 @@ Version history
 2.1.9 - Source code was improved. Linux support has been added.
 2.1.9.0.1 – Documentation was updated.
 2.2 - 2.2.3 - Small changes.
+2.2.3.1 - Makefile was updated.
