@@ -13,6 +13,7 @@ FILE *create_output_file(const char *name);
 void go_offset(FILE *file,const unsigned long int offset);
 unsigned long int get_file_size(FILE *file);
 void data_dump(FILE *input,FILE *output,const size_t length);
+void fast_data_dump(FILE *input,FILE *output,const size_t length);
 void write_output_file(FILE *input,const char *name,const size_t length);
 char *get_string_memory(const size_t length);
 size_t get_extension_position(const char *source);
@@ -37,55 +38,55 @@ int main(int argc, char *argv[])
 
 void show_end_message()
 {
- puts(" ");
+ putchar('\n');
  puts("Work finish");
 }
 
 void show_intro()
 {
- puts(" ");
+ putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.2.3");
- puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2018 year");
+ puts("Version 2.2.4");
+ puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2019 years");
  puts("This program distributed under GNU GENERAL PUBLIC LICENSE");
 }
 
 void show_start_message()
 {
- puts(" ");
+ putchar('\n');
  puts("Extracting a font data...");
 }
 
 void command_line_help()
 {
- puts(" ");
+ putchar('\n');
  puts("You must give a target file name as command line argument!");
 }
 
 FILE *open_input_file(const char *name)
 {
- FILE *file;
- file=fopen(name,"rb");
- if (file==NULL)
+ FILE *target;
+ target=fopen(name,"rb");
+ if (target==NULL)
  {
-  puts(" ");
-  puts("File operation error");
-  exit(2);
+  putchar('\n');
+  puts("Can't open input file");
+  exit(1);
  }
- return file;
+ return target;
 }
 
 FILE *create_output_file(const char *name)
 {
- FILE *file;
- file=fopen(name,"wb");
- if (file==NULL)
+ FILE *target;
+ target=fopen(name,"wb");
+ if (target==NULL)
  {
-  puts(" ");
-  puts("File operation error");
+  putchar('\n');
+  puts("Can't create ouput file");
   exit(2);
  }
- return file;
+ return target;
 }
 
 void go_offset(FILE *file,const unsigned long int offset)
@@ -104,23 +105,29 @@ unsigned long int get_file_size(FILE *file)
 
 void data_dump(FILE *input,FILE *output,const size_t length)
 {
- unsigned char single_byte;
+ unsigned char data;
  size_t index;
+ data=0;
+ for (index=0;index<length;++index)
+ {
+  fread(&data,sizeof(unsigned char),1,input);
+  fwrite(&data,sizeof(unsigned char),1,input);
+ }
+
+}
+
+void fast_data_dump(FILE *input,FILE *output,const size_t length)
+{
  unsigned char *buffer=NULL;
  buffer=(unsigned char*)calloc(length,sizeof(unsigned char));
  if (buffer==NULL)
  {
-  for(index=0;index<length;++index)
-  {
-   fread(&single_byte,1,1,input);
-   fwrite(&single_byte,1,1,output);
-  }
-
+  data_dump(input,output,length);
  }
  else
  {
-  fread(buffer,length,1,input);
-  fwrite(buffer,length,1,output);
+  fread(buffer,sizeof(unsigned char),length,input);
+  fwrite(buffer,sizeof(unsigned char),length,output);
   free(buffer);
  }
 
@@ -130,7 +137,7 @@ void write_output_file(FILE *input,const char *name,const size_t length)
 {
  FILE *output;
  output=create_output_file(name);
- data_dump(input,output,length);
+ fast_data_dump(input,output,length);
  fclose(output);
 }
 
@@ -140,9 +147,9 @@ char *get_string_memory(const size_t length)
  memory=(char*)calloc(length+1,sizeof(char));
  if(memory==NULL)
  {
-  puts(" ");
+  putchar('\n');
   puts("Can't allocate memory");
-  exit(1);
+  exit(3);
  }
  return memory;
 }
@@ -188,9 +195,9 @@ FNT read_fnt_head(FILE *file)
  fread(&fnt,sizeof(FNT),1,file);
  if (strcmp(fnt.signature,"ElecbyteFnt")!=0)
  {
-  puts(" ");
+  putchar('\n');
   puts("Bad signature of a font file");
-  exit(3);
+  exit(4);
  }
  return fnt;
 }
