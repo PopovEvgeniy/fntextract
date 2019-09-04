@@ -19,6 +19,7 @@ char *get_string_memory(const size_t length);
 size_t get_extension_position(const char *source);
 char *get_short_name(const char *name);
 char* get_name(const char *name,const char *ext);
+void check_signature(const char *signature);
 FNT read_fnt_head(FILE *file);
 void work(const char *fnt_file_name);
 
@@ -46,7 +47,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.2.4");
+ puts("Version 2.2.5");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2019 years");
  puts("This program distributed under GNU GENERAL PUBLIC LICENSE");
 }
@@ -189,16 +190,22 @@ char* get_name(const char *name,const char *ext)
   return strcat(result,ext);
 }
 
-FNT read_fnt_head(FILE *file)
+void check_signature(const char *signature)
 {
- FNT fnt;
- fread(&fnt,sizeof(FNT),1,file);
- if (strcmp(fnt.signature,"ElecbyteFnt")!=0)
+ if (strcmp(signature,"ElecbyteFnt")!=0)
  {
   putchar('\n');
   puts("Bad signature of a font file");
   exit(4);
  }
+
+}
+
+FNT read_fnt_head(FILE *file)
+{
+ FNT fnt;
+ fread(&fnt,sizeof(FNT),1,file);
+ check_signature(fnt.signature);
  return fnt;
 }
 
