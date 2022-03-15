@@ -47,8 +47,8 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.2.7");
- puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2020 years");
+ puts("Version 2.2.9");
+ puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2022 years");
  puts("This program distributed under GNU GENERAL PUBLIC LICENSE");
 }
 
@@ -92,7 +92,13 @@ FILE *create_output_file(const char *name)
 
 void go_offset(FILE *file,const unsigned long int offset)
 {
- fseek(file,offset,SEEK_SET);
+ if (fseek(file,offset,SEEK_SET)!=0)
+ {
+  putchar('\n');
+  puts("Can't jump to target offset");
+  exit(3);
+ }
+
 }
 
 unsigned long int get_file_size(FILE *file)
@@ -150,7 +156,7 @@ char *get_string_memory(const size_t length)
  {
   putchar('\n');
   puts("Can't allocate memory");
-  exit(3);
+  exit(4);
  }
  return memory;
 }
@@ -196,7 +202,7 @@ void check_signature(const char *signature)
  {
   putchar('\n');
   puts("Bad signature of a font file");
-  exit(4);
+  exit(5);
  }
 
 }

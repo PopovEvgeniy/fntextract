@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.2.7
+                               Version 2.2.9
 
 System requirement
 
@@ -18,8 +18,9 @@ Exit codes
 0 - Operation successfully complete.
 1 - Can't open input file.
 2 - Can't create output file.
-3 - Can't allocate memory.
-4 - Invalid format. 
+3 - Can't jump to target offset.
+4 - Can't allocate memory.
+5 - Invalid format. 
 
 License
 
@@ -57,3 +58,4 @@ Version history
 2.2.3.1 - Makefile was updated.
 2.2.4 - 2.2.5 - Small changes.
 2.2.6 - 2.2.7 - Small bug was fixed.
+2.2.8 - 2.2.9 - Small changes.
