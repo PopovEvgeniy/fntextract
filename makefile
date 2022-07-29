@@ -1,8 +1,7 @@
 ﻿install:
 	@echo Installation in progress. Please wait
-	@gcc fntextract.c -g0 -O0 -o fntextract
-	@chmod ugo+rx fntextract
-	@cp -f -p fntextract /bin/
+	@gcc fntextract.c -g0 -O0 -o /bin/fntextract
+	@chmod ugo+rx /bin/fntextract
 	@echo Installation was successfuly complete
 uninstall:
 	@rm -f /bin/fntextract
