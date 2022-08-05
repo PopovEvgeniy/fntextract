@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.2.9.2
+                               Version 2.2.9.3
 
 System requirement
 
@@ -30,7 +30,7 @@ Source code
 
 The program source code compiled under Open Watcom.
 But you can do it under any modern C compiler.
-Source code can be compiled for wide range operating systems, but you need create to makefile or build script by yourself.
+Source code can be compiled for wide range operating systems, but you need to create makefile or build script by yourself.
 I provide only two things: compiled binary file for Windows and makefile for Linux.
 
 Install and uninstall under Linux
@@ -60,3 +60,4 @@ Version history
 2.2.6 - 2.2.7 - Small bug fixed.
 2.2.8 - 2.2.9 - Small changes.
 2.2.9.1 - 2.2.9.2 - Makefile updated.
+2.2.9.3 - Documentation updated.
