@@ -4,10 +4,8 @@
 #include <string.h>
 #include "format.h"
 
-void show_end_message();
 void show_intro();
-void show_start_message();
-void command_line_help();
+void show_message(const char *message);
 FILE *open_input_file(const char *name);
 FILE *create_output_file(const char *name);
 void go_offset(FILE *file,const unsigned long int offset);
@@ -28,40 +26,30 @@ int main(int argc, char *argv[])
  show_intro();
  if (argc<2)
  {
-  command_line_help();
+  show_message("You must give a target file name as command line argument!");
  }
  else
  {
+  show_message("Extracting a font data...");
   work(argv[1]);
+  show_message("Work finish");
  }
  return 0;
-}
-
-void show_end_message()
-{
- putchar('\n');
- puts("Work finish");
 }
 
 void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.2.9");
+ puts("Version 2.3");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2022 years");
  puts("This program distributed under GNU GENERAL PUBLIC LICENSE");
 }
 
-void show_start_message()
+void show_message(const char *message)
 {
  putchar('\n');
- puts("Extracting a font data...");
-}
-
-void command_line_help()
-{
- putchar('\n');
- puts("You must give a target file name as command line argument!");
+ puts(message);
 }
 
 FILE *open_input_file(const char *name)
@@ -223,7 +211,6 @@ void work(const char *fnt_file_name)
  FNT fnt;
  fnt_file=open_input_file(fnt_file_name);
  fnt=read_fnt_head(fnt_file);
- show_start_message();
  go_offset(fnt_file,fnt.pcx_offset);
  short_name=get_short_name(fnt_file_name);
  output_file_name=get_name(short_name,".pcx");
@@ -234,5 +221,4 @@ void work(const char *fnt_file_name)
  write_output_file(fnt_file,output_file_name,(size_t)fnt.text_size);
  free(output_file_name);
  free(short_name);
- show_end_message();
 }

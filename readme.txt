@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.2.9.3
+                               Version 2.3
 
 System requirement
 
@@ -20,7 +20,7 @@ Exit codes
 2 - Can't create output file.
 3 - Can't jump to target offset.
 4 - Can't allocate memory.
-5 - Invalid format. 
+5 - Invalid format.
 
 License
 
@@ -31,7 +31,7 @@ Source code
 The program source code compiled under Open Watcom.
 But you can do it under any modern C compiler.
 Source code can be compiled for wide range operating systems, but you need to create makefile or build script by yourself.
-I provide only two things: compiled binary file for Windows and makefile for Linux.
+I provide only two things: compiled the binary file for Windows and makefile for Linux.
 
 Install and uninstall under Linux
 
@@ -61,3 +61,4 @@ Version history
 2.2.8 - 2.2.9 - Small changes.
 2.2.9.1 - 2.2.9.2 - Makefile updated.
 2.2.9.3 - Documentation updated.
+2.3 - Small changes.
