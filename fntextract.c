@@ -41,7 +41,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.3");
+ puts("Version 2.3.1");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2022 years");
  puts("This program distributed under GNU GENERAL PUBLIC LICENSE");
 }
@@ -58,8 +58,7 @@ FILE *open_input_file(const char *name)
  target=fopen(name,"rb");
  if (target==NULL)
  {
-  putchar('\n');
-  puts("Can't open input file");
+  show_message("Can't open input file");
   exit(1);
  }
  return target;
@@ -71,8 +70,7 @@ FILE *create_output_file(const char *name)
  target=fopen(name,"wb");
  if (target==NULL)
  {
-  putchar('\n');
-  puts("Can't create ouput file");
+  show_message("Can't create ouput file");
   exit(2);
  }
  return target;
@@ -82,8 +80,7 @@ void go_offset(FILE *file,const unsigned long int offset)
 {
  if (fseek(file,offset,SEEK_SET)!=0)
  {
-  putchar('\n');
-  puts("Can't jump to target offset");
+  show_message("Can't jump to target offset");
   exit(3);
  }
 
@@ -142,8 +139,7 @@ char *get_string_memory(const size_t length)
  memory=(char*)calloc(length+1,sizeof(char));
  if(memory==NULL)
  {
-  putchar('\n');
-  puts("Can't allocate memory");
+  show_message("Can't allocate memory");
   exit(4);
  }
  return memory;
@@ -188,8 +184,7 @@ void check_signature(const char *signature)
 {
  if (strcmp(signature,"ElecbyteFnt")!=0)
  {
-  putchar('\n');
-  puts("Bad signature of a font file");
+  show_message("Bad signature of a font file");
   exit(5);
  }
 
