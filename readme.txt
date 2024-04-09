@@ -2,11 +2,11 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.3.2
+                               Version 2.3.3
 
 System requirement
 
-48 kilobytes free space on storage media.
+64 kilobytes free space on storage media.
 
 Description and usage
 
@@ -28,9 +28,9 @@ This program distributed under GNU GENERAL PUBLIC LICENSE.
 
 Source code
 
-The program source code compiled under Open Watcom.
-But you can do it under any modern C compiler.
-Source code can be compiled for wide range operating systems, but you need to create makefile or build script by yourself.
+The source code compiled under Open Watcom.
+But you can compile it under any modern C compiler.
+Source code can be compiled for wide range of operating systems, but you need to create makefile or build script by yourself.
 I provide only two things: compiled the binary file for Windows and makefile for Linux.
 
 Install and uninstall under Linux
@@ -62,3 +62,4 @@ Version history
 2.2.9.1 - 2.2.9.2 - Makefile updated.
 2.2.9.3 - Documentation updated.
 2.3 - 2.3.2 - Small changes.
+2.3.3 - Visual C++ support improved.

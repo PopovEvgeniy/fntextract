@@ -1,7 +1,4 @@
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "fntextract.h"
 #include "format.h"
 
 void show_intro();
@@ -40,8 +37,8 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.3.2");
- puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2022 years");
+ puts("Version 2.3.3");
+ puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2024 years");
  puts("This program distributed under GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
 }
