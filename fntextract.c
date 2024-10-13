@@ -22,13 +22,13 @@ int main(int argc, char *argv[])
  show_intro();
  if (argc<2)
  {
-  puts("You must give a target file name as command line argument!");
+  puts("You must give a target file name as the command-line argument!");
  }
  else
  {
   puts("Extracting a font data...");
   work(argv[1]);
-  puts("Work finish");
+  puts("The work has been finished");
  }
  return 0;
 }
@@ -37,9 +37,9 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.3.3");
+ puts("Version 2.3.4");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2024 years");
- puts("This program distributed under GNU GENERAL PUBLIC LICENSE");
+ puts("This program is distributed under GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
 }
 
@@ -49,7 +49,7 @@ FILE *open_input_file(const char *name)
  target=fopen(name,"rb");
  if (target==NULL)
  {
-  puts("Can't open input file");
+  puts("Can't open the input file");
   exit(1);
  }
  return target;
@@ -61,7 +61,7 @@ FILE *create_output_file(const char *name)
  target=fopen(name,"wb");
  if (target==NULL)
  {
-  puts("Can't create ouput file");
+  puts("Can't create the ouput file");
   exit(2);
  }
  return target;
@@ -71,7 +71,7 @@ void go_offset(FILE *file,const unsigned long int offset)
 {
  if (fseek(file,offset,SEEK_SET)!=0)
  {
-  puts("Can't jump to target offset");
+  puts("Can't jump to the target offset");
   exit(3);
  }
 
@@ -175,7 +175,7 @@ void check_signature(const char *signature)
 {
  if (strcmp(signature,"ElecbyteFnt")!=0)
  {
-  puts("Bad signature of a font file");
+  puts("The bad signature of a font file");
   exit(5);
  }
 
