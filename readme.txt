@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.3.4
+                               Version 2.3.4.1
 
 System requirements
 
@@ -15,12 +15,12 @@ This program takes a target file name as the command-line argument.
 
 Exit codes
 
-0 - Operation was successfully completed.
-1 - Can't open the input file.
-2 - Can't create the output file.
-3 - Can't jump to the target offset.
-4 - Can't allocate memory.
-5 - Invalid format.
+0: Operation was successfully completed.
+1: Can't open the input file.
+2: Can't create the output file.
+3: Can't jump to the target offset.
+4: Can't allocate memory.
+5: Invalid format.
 
 License
 
@@ -50,18 +50,19 @@ You can send me a letter at tuzik87@inbox.ru.
 Version history
 
 1.0: Initial version.
-1.1 — 2.1.4: Stable branch builds.
-2.1.5 — 2.1.8: Small changes.
+1.1-2.1.4: The stable branch builds.
+2.1.5-2.1.8: The small changes.
 2.1.9: The source code is improved. Linux support has been added.
 2.1.9.0.1: Documentation updated.
-2.2 — 2.2.3: Small changes.
+2.2-2.2.3: The small changes.
 2.2.3.1: The makefile updated.
-2.2.4 — 2.2.5: Small changes.
-2.2.6 — 2.2.7: A small bug fixed.
-2.2.8 — 2.2.9: Small changes.
-2.2.9.1 — 2.2.9.2: The makefile updated.
+2.2.4-2.2.5: The small changes.
+2.2.6-2.2.7: A small bug is fixed.
+2.2.8-2.2.9: The small changes.
+2.2.9.1-2.2.9.2: The makefile updated.
 2.2.9.3: Documentation updated.
-2.3 — 2.3.2: Small changes.
+2.3-2.3.2: The small changes.
 2.3.3: Visual C++ support improved.
 2.3.3.1: Documentation updated.
-2.3.4: Small changes.
+2.3.4: The small changes.
+2.3.4.1: Documentation updated.
