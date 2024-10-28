@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.3.4.1
+                               Version 2.3.4.2
 
 System requirements
 
@@ -29,7 +29,7 @@ This program is distributed under GNU GENERAL PUBLIC LICENSE.
 Source code
 
 The code was compiled under Open Watcom.
-But you can compile it under any modern C compiler.
+But you can compile it with any modern C compiler.
 The source code can be compiled for a wide range of operating systems, but you need to create a makefile or a build script by yourself.
 I provide only two things: the binary file for Windows and the makefile for Linux.
 
@@ -52,17 +52,17 @@ Version history
 1.0: Initial version.
 1.1-2.1.4: The stable branch builds.
 2.1.5-2.1.8: The small changes.
-2.1.9: The source code is improved. Linux support has been added.
-2.1.9.0.1: Documentation updated.
+2.1.9: The source code has improved. Linux support has been added.
+2.1.9.0.1: The documentation has been updated.
 2.2-2.2.3: The small changes.
-2.2.3.1: The makefile updated.
+2.2.3.1: The makefile has been updated.
 2.2.4-2.2.5: The small changes.
-2.2.6-2.2.7: A small bug is fixed.
+2.2.6-2.2.7: A small bug has been fixed.
 2.2.8-2.2.9: The small changes.
-2.2.9.1-2.2.9.2: The makefile updated.
-2.2.9.3: Documentation updated.
+2.2.9.1-2.2.9.2: The makefile has been updated.
+2.2.9.3: The documentation has been updated.
 2.3-2.3.2: The small changes.
-2.3.3: Visual C++ support improved.
-2.3.3.1: Documentation updated.
+2.3.3: Visual C++ support has improved.
+2.3.3.1: The documentation has been updated.
 2.3.4: The small changes.
-2.3.4.1: Documentation updated.
+2.3.4.1-2.3.4.2: The documentation has been updated.
