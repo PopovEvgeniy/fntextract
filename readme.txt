@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.3.5
+                               Version 2.3.6
 
 System requirements
 
@@ -10,7 +10,7 @@ System requirements
 
 Description and usage
 
-This program lets you decompile font files for games that are built on MUGEN game engine.
+This program lets you decompile font files for games that are built on the MUGEN game engine.
 This program takes a target file name as the command-line argument.
 
 Exit codes
@@ -67,3 +67,4 @@ Version history
 2.3.4: The small changes.
 2.3.4.1-2.3.4.2: The documentation has been updated.
 2.3.5: The source code was recompiled under Tiny C Compiler.
+2.3.6: The small changes.

@@ -37,8 +37,8 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.3.5");
- puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2024 years");
+ puts("Version 2.3.6");
+ puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2025 years");
  puts("This program is distributed under GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
 }
@@ -167,8 +167,8 @@ char* get_name(const char *name,const char *ext)
   size_t length;
   length=strlen(name)+strlen(ext);
   result=get_string_memory(length);
-  strcpy(result,name);
-  return strcat(result,ext);
+  sprintf(result,"%s%s",name,ext);
+  return result;
 }
 
 void check_signature(const char *signature)
