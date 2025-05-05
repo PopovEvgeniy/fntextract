@@ -37,7 +37,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.3.6");
+ puts("Version 2.3.7");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2025 years");
  puts("This program is distributed under GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
