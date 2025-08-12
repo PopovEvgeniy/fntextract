@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.3.7
+                               Version 2.3.7.1
 
 System requirements
 
@@ -24,7 +24,7 @@ Exit codes
 
 License
 
-This program is distributed under GNU GENERAL PUBLIC LICENSE.
+This program is distributed under the GNU GENERAL PUBLIC LICENSE.
 
 Source code
 
@@ -42,10 +42,6 @@ Follow these steps:
 3.
 Run as root to install: make install
 Run as root to uninstall: make uninstall
-
-Contact
-
-You can send me a letter at tuzik87@inbox.ru.
 
 Version history
 
@@ -68,3 +64,4 @@ Version history
 2.3.4.1-2.3.4.2: The documentation has been updated.
 2.3.5: The source code was recompiled under Tiny C Compiler.
 2.3.6-2.3.7: The small changes.
+2.3.7.1: The documentation has been updated.
