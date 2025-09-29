@@ -5,7 +5,6 @@ void show_intro();
 FILE *open_input_file(const char *name);
 FILE *create_output_file(const char *name);
 void go_offset(FILE *file,const unsigned long int offset);
-unsigned long int get_file_size(FILE *file);
 char *get_memory(const size_t length);
 void data_dump(FILE *input,FILE *output,const size_t length);
 void fast_data_dump(FILE *input,FILE *output,const size_t length);
@@ -37,7 +36,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.3.9");
+ puts("Version 2.4");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2025 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
@@ -75,15 +74,6 @@ void go_offset(FILE *file,const unsigned long int offset)
   exit(3);
  }
 
-}
-
-unsigned long int get_file_size(FILE *file)
-{
- unsigned long int length;
- fseek(file,0,SEEK_END);
- length=ftell(file);
- rewind(file);
- return length;
 }
 
 char *get_memory(const size_t length)
