@@ -6,13 +6,13 @@ FILE *open_input_file(const char *name);
 FILE *create_output_file(const char *name);
 void go_offset(FILE *file,const unsigned long int offset);
 unsigned long int get_file_size(FILE *file);
+char *get_memory(const size_t length);
 void data_dump(FILE *input,FILE *output,const size_t length);
 void fast_data_dump(FILE *input,FILE *output,const size_t length);
 void write_output_file(FILE *input,const char *name,const size_t length);
-char *get_string_memory(const size_t length);
 size_t get_extension_position(const char *source);
 char *get_short_name(const char *name);
-char* get_name(const char *name,const char *ext);
+char *get_name(const char *name,const char *ext);
 void check_signature(const char *signature);
 FNT read_fnt_head(FILE *file);
 void work(const char *fnt_file_name);
@@ -37,7 +37,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.3.8");
+ puts("Version 2.3.9");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2025 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
@@ -86,31 +86,52 @@ unsigned long int get_file_size(FILE *file)
  return length;
 }
 
+char *get_memory(const size_t length)
+{
+ char *memory=NULL;
+ memory=(char*)calloc(length,sizeof(char));
+ if(memory==NULL)
+ {
+  puts("Can't allocate memory");
+  exit(4);
+ }
+ return memory;
+}
+
 void data_dump(FILE *input,FILE *output,const size_t length)
 {
- unsigned char data;
- size_t index;
- data=0;
- for (index=0;index<length;++index)
+ char *buffer;
+ size_t current,elapsed,block;
+ current=0;
+ elapsed=0;
+ block=4096;
+ buffer=get_memory(block);
+ while (current<length)
  {
-  fread(&data,sizeof(unsigned char),1,input);
-  fwrite(&data,sizeof(unsigned char),1,output);
+  elapsed=length-current;
+  if (elapsed<block)
+  {
+   block=elapsed;
+  }
+  fread(buffer,sizeof(char),block,input);
+  fwrite(buffer,sizeof(char),block,output);
+  current+=block;
  }
-
+ free(buffer);
 }
 
 void fast_data_dump(FILE *input,FILE *output,const size_t length)
 {
- unsigned char *buffer=NULL;
- buffer=(unsigned char*)calloc(length,sizeof(unsigned char));
+ char *buffer;
+ buffer=(char*)malloc(length);
  if (buffer==NULL)
  {
   data_dump(input,output,length);
  }
  else
  {
-  fread(buffer,sizeof(unsigned char),length,input);
-  fwrite(buffer,sizeof(unsigned char),length,output);
+  fread(buffer,sizeof(char),length,input);
+  fwrite(buffer,sizeof(char),length,output);
   free(buffer);
  }
 
@@ -122,18 +143,6 @@ void write_output_file(FILE *input,const char *name,const size_t length)
  output=create_output_file(name);
  fast_data_dump(input,output,length);
  fclose(output);
-}
-
-char *get_string_memory(const size_t length)
-{
- char *memory=NULL;
- memory=(char*)calloc(length+1,sizeof(char));
- if(memory==NULL)
- {
-  puts("Can't allocate memory");
-  exit(4);
- }
- return memory;
 }
 
 size_t get_extension_position(const char *source)
@@ -156,18 +165,20 @@ char *get_short_name(const char *name)
  size_t length;
  char *result=NULL;
  length=get_extension_position(name);
- result=get_string_memory(length);
- strncpy(result,name,length);
- return result;
+ result=get_memory(length+1);
+ return strncpy(result,name,length);
 }
 
-char* get_name(const char *name,const char *ext)
+char *get_name(const char *name,const char *ext)
 {
   char *result=NULL;
+  char *output=NULL;
   size_t length;
-  length=strlen(name)+strlen(ext);
-  result=get_string_memory(length);
-  sprintf(result,"%s%s",name,ext);
+  output=get_short_name(name);
+  length=strlen(output)+strlen(ext);
+  result=get_memory(length+1);
+  sprintf(result,"%s%s",output,ext);
+  free(output);
   return result;
 }
 
