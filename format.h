@@ -1,4 +1,3 @@
-#pragma pack(push, 1)
 typedef struct
 {
  char signature[12];
@@ -9,4 +8,3 @@ typedef struct
  unsigned long int text_size:32;
  char comment[40];
 } FNT;
-#pragma pack(pop)
