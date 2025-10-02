@@ -36,7 +36,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.4.1");
+ puts("Version 2.4.2");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2025 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
@@ -174,7 +174,7 @@ char *get_name(const char *name,const char *ext)
 
 void check_signature(const char *signature)
 {
- if (strcmp(signature,"ElecbyteFnt")!=0)
+ if (strncmp(signature,"ElecbyteFnt",12)!=0)
  {
   puts("The invalid format");
   exit(5);
