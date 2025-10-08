@@ -36,7 +36,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.4.2");
+ puts("Version 2.4.3");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2025 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
@@ -92,11 +92,10 @@ void data_dump(FILE *input,FILE *output,const size_t length)
 {
  char *buffer;
  size_t current,elapsed,block;
- current=0;
  elapsed=0;
  block=4096;
  buffer=get_memory(block);
- while (current<length)
+ for (current=0;current<length;current+=block)
  {
   elapsed=length-current;
   if (elapsed<block)
@@ -105,7 +104,6 @@ void data_dump(FILE *input,FILE *output,const size_t length)
   }
   fread(buffer,sizeof(char),block,input);
   fwrite(buffer,sizeof(char),block,output);
-  current+=block;
  }
  free(buffer);
 }
