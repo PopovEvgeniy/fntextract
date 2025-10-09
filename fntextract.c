@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
  }
  else
  {
-  puts("Extracting a font data...");
+  puts("Working...");
   work(argv[1]);
   puts("The work has been finished");
  }
@@ -36,7 +36,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.4.4");
+ puts("Version 2.4.5");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2025 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
