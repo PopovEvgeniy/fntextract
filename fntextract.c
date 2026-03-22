@@ -4,15 +4,15 @@
 void show_intro();
 FILE *open_input_file(const char *name);
 FILE *create_output_file(const char *name);
-void go_offset(FILE *file,const unsigned long int offset);
+void go_offset(FILE *target,const unsigned long int offset);
 char *get_memory(const size_t length);
+void check_signature(const char *signature);
 void data_dump(FILE *input,FILE *output,const size_t length);
 void fast_data_dump(FILE *input,FILE *output,const size_t length);
 void write_output_file(FILE *input,const char *name,const size_t length);
 size_t get_extension_position(const char *source);
 char *get_short_name(const char *name);
 char *get_name(const char *name,const char *ext);
-void check_signature(const char *signature);
 FNT read_fnt_head(FILE *file);
 void work(const char *fnt_file_name);
 
@@ -36,8 +36,8 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.4.5");
- puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2025 years");
+ puts("Version 2.4.6");
+ puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2026 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
 }
@@ -66,9 +66,9 @@ FILE *create_output_file(const char *name)
  return target;
 }
 
-void go_offset(FILE *file,const unsigned long int offset)
+void go_offset(FILE *target,const unsigned long int offset)
 {
- if (fseek(file,offset,SEEK_SET)!=0)
+ if (fseek(target,offset,SEEK_SET)!=0)
  {
   puts("Can't jump to the target offset");
   exit(3);
@@ -86,6 +86,16 @@ char *get_memory(const size_t length)
   exit(4);
  }
  return memory;
+}
+
+void check_signature(const char *signature)
+{
+ if (strncmp(signature,"ElecbyteFnt",12)!=0)
+ {
+  puts("The invalid format");
+  exit(5);
+ }
+
 }
 
 void data_dump(FILE *input,FILE *output,const size_t length)
@@ -135,17 +145,18 @@ void write_output_file(FILE *input,const char *name,const size_t length)
 
 size_t get_extension_position(const char *source)
 {
- size_t index;
- for(index=strlen(source);index>0;--index)
+ size_t index,position;
+ position=strlen(source);
+ for(index=position;index>0;--index)
  {
   if(source[index]=='.')
   {
+   position=index;
    break;
   }
 
  }
- if (index==0) index=strlen(source);
- return index;
+ return position;
 }
 
 char *get_short_name(const char *name)
@@ -168,16 +179,6 @@ char *get_name(const char *name,const char *ext)
   sprintf(result,"%s%s",output,ext);
   free(output);
   return result;
-}
-
-void check_signature(const char *signature)
-{
- if (strncmp(signature,"ElecbyteFnt",12)!=0)
- {
-  puts("The invalid format");
-  exit(5);
- }
-
 }
 
 FNT read_fnt_head(FILE *file)
