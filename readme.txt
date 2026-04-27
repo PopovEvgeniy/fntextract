@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.4.8
+                               Version 2.4.9
 
 The program description.
 
@@ -14,9 +14,11 @@ Exit codes.
 0: The operation was successfully completed.
 1: Can't open the input file.
 2: Can't create the output file.
-3: Can't jump to the target offset.
-4: Can't allocate memory.
-5: The invalid format.
+3: Can't read data!
+4: Can't write data!
+5: Can't jump to the target offset.
+6: Can't allocate memory.
+7: The invalid format.
 
 License.
 
@@ -69,3 +71,4 @@ Version history.
 2.4.2-2.4.3: The small changes.
 2.4.4: The decompilation process has improved.
 2.4.5-2.4.8: The small changes.
+2.4.9: The file processing has improved.
