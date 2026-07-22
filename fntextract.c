@@ -12,9 +12,9 @@ void check_signature(const char *signature);
 void data_dump(FILE *input,FILE *output,const size_t length);
 void fast_data_dump(FILE *input,FILE *output,const size_t length);
 void write_output_file(FILE *input,const char *name,const size_t length);
-size_t get_extension_position(const char *source);
-char *get_short_name(const char *name);
-char *get_name(const char *name,const char *ext);
+size_t get_name_without_extension_length(const char *source);
+char *get_name_without_extension(const char *name);
+char *get_name(const char *name,const char *extension);
 FNT read_fnt_head(FILE *target);
 void work(const char *fnt_file_name);
 
@@ -38,7 +38,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.4.9");
+ puts("Version 2.5");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2026 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
@@ -46,7 +46,12 @@ void show_intro()
 
 FILE *open_input_file(const char *name)
 {
- FILE *target;
+ FILE *target=NULL;
+ if (name==NULL)
+ {
+  puts("Can't open the input file");
+  exit(1);
+ }
  target=fopen(name,"rb");
  if (target==NULL)
  {
@@ -58,7 +63,12 @@ FILE *open_input_file(const char *name)
 
 FILE *create_output_file(const char *name)
 {
- FILE *target;
+ FILE *target=NULL;
+ if (name==NULL)
+ {
+  puts("Can't create the ouput file");
+  exit(2);
+ }
  target=fopen(name,"wb");
  if (target==NULL)
  {
@@ -167,41 +177,70 @@ void write_output_file(FILE *input,const char *name,const size_t length)
  fclose(output);
 }
 
-size_t get_extension_position(const char *source)
+size_t get_name_without_extension_length(const char *source)
 {
- size_t index,position;
- position=strlen(source);
- for(index=position;index>0;--index)
+ size_t index=0;
+ size_t position=0;
+ size_t length=0;
+ if (source!=NULL)
  {
-  if(source[index]=='.')
+  length=strlen(source);
+ }
+ for (index=length;index>0;--index)
+ {
+  position=index-1;
+  if (source[position]==DIRECTORY_SEPARATOR)
   {
-   position=index;
    break;
+  }
+  if (source[position]=='.')
+  {
+   if (position>0)
+   {
+    if ((source[position-1]!=DIRECTORY_SEPARATOR) && (source[position-1]!='.'))
+    {
+     length=position;
+     break;
+    }
+
+   }
+
   }
 
  }
- return position;
+ return length;
 }
 
-char *get_short_name(const char *name)
+char *get_name_without_extension(const char *name)
 {
- size_t length;
  char *result=NULL;
- length=get_extension_position(name);
- result=get_memory(length+1);
- return strncpy(result,name,length);
+ size_t length;
+ length=get_name_without_extension_length(name);
+ if (length>0)
+ {
+  result=get_memory(length+1);
+  strncpy(result,name,length);
+ }
+ return result;
 }
 
-char *get_name(const char *name,const char *ext)
+char *get_name(const char *name,const char *extension)
 {
   char *result=NULL;
-  char *output=NULL;
+  char *name_without_extension=NULL;
   size_t length;
-  output=get_short_name(name);
-  length=strlen(output)+strlen(ext);
-  result=get_memory(length+1);
-  sprintf(result,"%s%s",output,ext);
-  free(output);
+  if (name!=NULL)
+  {
+   if (extension!=NULL)
+   {
+    name_without_extension=get_name_without_extension(name);
+    length=strlen(name_without_extension)+strlen(extension);
+    result=get_memory(length+1);
+    sprintf(result,"%s%s",name_without_extension,extension);
+   }
+
+  }
+  free(name_without_extension);
   return result;
 }
 
@@ -216,18 +255,18 @@ FNT read_fnt_head(FILE *target)
 void work(const char *fnt_file_name)
 {
  FILE *fnt_file;
- char *output_file_name;
- char *short_name=NULL;
+ char *output_file_name=NULL;
+ char *name_without_extension=NULL;
  FNT fnt;
  fnt_file=open_input_file(fnt_file_name);
  fnt=read_fnt_head(fnt_file);
  go_offset(fnt_file,fnt.pcx_offset);
- short_name=get_short_name(fnt_file_name);
- output_file_name=get_name(short_name,".pcx");
+ name_without_extension=get_name_without_extension(fnt_file_name);
+ output_file_name=get_name(name_without_extension,".pcx");
  write_output_file(fnt_file,output_file_name,(size_t)fnt.pcx_size);
  free(output_file_name);
- output_file_name=get_name(short_name,".txt");
+ output_file_name=get_name(name_without_extension,".txt");
  write_output_file(fnt_file,output_file_name,(size_t)fnt.text_size);
  free(output_file_name);
- free(short_name);
+ free(name_without_extension);
 }
