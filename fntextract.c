@@ -38,7 +38,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.5");
+ puts("Version 2.5.1");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2026 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
@@ -228,17 +228,22 @@ char *get_name(const char *name,const char *extension)
 {
   char *result=NULL;
   char *name_without_extension=NULL;
-  size_t length;
-  if (name!=NULL)
+  size_t name_length=0;
+  size_t extension_length=0;
+  name_without_extension=get_name_without_extension(name);
+  if (name_without_extension!=NULL)
   {
-   if (extension!=NULL)
-   {
-    name_without_extension=get_name_without_extension(name);
-    length=strlen(name_without_extension)+strlen(extension);
-    result=get_memory(length+1);
-    sprintf(result,"%s%s",name_without_extension,extension);
-   }
-
+   name_length=strlen(name_without_extension);
+  }
+  if (extension!=NULL)
+  {
+   extension_length=strlen(extension);
+  }
+  if ((name_length>0) && (extension_length>0))
+  {
+   result=get_memory(name_length+extension_length+1);
+   strncpy(result,name_without_extension,name_length);
+   strncat(result,extension,extension_length);
   }
   free(name_without_extension);
   return result;
@@ -254,7 +259,7 @@ FNT read_fnt_head(FILE *target)
 
 void work(const char *fnt_file_name)
 {
- FILE *fnt_file;
+ FILE *fnt_file=NULL;
  char *output_file_name=NULL;
  char *name_without_extension=NULL;
  FNT fnt;
