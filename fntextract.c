@@ -38,7 +38,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.5.2");
+ puts("Version 2.5.3");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2026 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
@@ -273,6 +273,7 @@ void work(const char *fnt_file_name)
  output_file_name=get_name(name_without_extension,".txt");
  go_offset(fnt_file,fnt.text_offset);
  write_output_file(fnt_file,output_file_name,(size_t)fnt.text_size);
+ fclose(fnt_file);
  free(output_file_name);
  free(name_without_extension);
 }
