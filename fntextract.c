@@ -38,7 +38,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.5.3");
+ puts("Version 2.5.4");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2026 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
@@ -134,10 +134,10 @@ void check_signature(const char *signature)
 
 void data_dump(FILE *input,FILE *output,const size_t length)
 {
- char *buffer;
- size_t current,elapsed,block;
- elapsed=0;
- block=4096;
+ char *buffer=NULL;
+ size_t current=0;
+ size_t elapsed=0;
+ size_t block=4096;
  buffer=get_memory(block);
  for (current=0;current<length;current+=block)
  {
@@ -154,7 +154,7 @@ void data_dump(FILE *input,FILE *output,const size_t length)
 
 void fast_data_dump(FILE *input,FILE *output,const size_t length)
 {
- char *buffer;
+ char *buffer=NULL;
  buffer=(char*)malloc(length);
  if (buffer==NULL)
  {
@@ -171,7 +171,7 @@ void fast_data_dump(FILE *input,FILE *output,const size_t length)
 
 void write_output_file(FILE *input,const char *name,const size_t length)
 {
- FILE *output;
+ FILE *output=NULL;
  output=create_output_file(name);
  fast_data_dump(input,output,length);
  fclose(output);
@@ -214,7 +214,7 @@ size_t get_name_without_extension_length(const char *source)
 char *get_name_without_extension(const char *name)
 {
  char *result=NULL;
- size_t length;
+ size_t length=0;
  length=get_name_without_extension_length(name);
  if (length>0)
  {
