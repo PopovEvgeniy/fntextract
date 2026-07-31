@@ -38,7 +38,7 @@ void show_intro()
 {
  putchar('\n');
  puts("FNT EXTRACT");
- puts("Version 2.5.4");
+ puts("Version 2.5.5");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2026 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
@@ -80,7 +80,7 @@ FILE *create_output_file(const char *name)
 
 void read_data(void *data,const size_t length,FILE *input)
 {
- fread(data,length,sizeof(char),input);
+ fread(data,sizeof(char),length,input);
  if (ferror(input)!=0)
  {
   puts("Can't read data!");
@@ -91,7 +91,7 @@ void read_data(void *data,const size_t length,FILE *input)
 
 void write_data(const void *data,const size_t length,FILE *output)
 {
- fwrite(data,length,sizeof(char),output);
+ fwrite(data,sizeof(char),length,output);
  if (ferror(output)!=0)
  {
   puts("Can't write data!");
