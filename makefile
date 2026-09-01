@@ -4,5 +4,5 @@ install:
 	@chmod ugo+rx /bin/fntextract
 	@echo Installation was successfully completed
 uninstall:
-	@rm -f /bin/fntextract
+	@rm /bin/fntextract
 	@echo Uninstallation was successfully completed

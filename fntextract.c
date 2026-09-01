@@ -40,8 +40,7 @@ int main(int argc, char *argv[])
 void show_intro()
 {
  putchar('\n');
- puts("FNT EXTRACT");
- puts("Version 2.5.8");
+ puts("FNT EXTRACT 2.5.9");
  puts("Mugen font decompiler by Popov Evgeniy Alekseyevich, 2008-2026 years");
  puts("This program is distributed under the GNU GENERAL PUBLIC LICENSE");
  putchar('\n');
@@ -118,7 +117,7 @@ char *get_memory(const size_t length)
 {
  char *memory=NULL;
  memory=(char*)calloc(length,sizeof(char));
- if(memory==NULL)
+ if (memory==NULL)
  {
   show_error("Can't allocate memory");
   exit(MEMORY_ALLOCATION_ERROR);

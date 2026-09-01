@@ -2,7 +2,7 @@
 
                Mugen font decompiler by Popov Evgeniy Alekseyevich
 
-                               Version 2.5.8
+                               Version 2.5.9
 
 The program description.
 
@@ -78,3 +78,4 @@ Version history.
 2.5.2: A small bug has been fixed.
 2.5.3-2.5.6: The small changes.
 2.5.7-2.5.8: The file processing has improved.
+2.5.9: The small changes.
